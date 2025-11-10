@@ -1,3 +1,13 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+:root {
+  --skillea-navy: #0c2461;
+  --skillea-mid-blue: #1d4ea0;
+  --skillea-light-blue: #6caefc;
+  --skillea-soft-blue: #a8cbff;
+  --skillea-soft-pink: #ff8dbc;
+  --skillea-star-yellow: #ffd86b;
+  --skillea-ice: #f4f7ff;
+}
