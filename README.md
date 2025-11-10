@@ -1,6 +1,8 @@
 skilleamainpage
 ================
 
+> **Nota:** La rama predeterminada es `main`. Ahí es donde se encuentran los últimos cambios de la landing page y la sección "Nosotros".
+
 ## 📄 Where is the README with the commands?
 
 This document (`README.md`) lives in the root of the repository. Whenever you clone or open the project, you can find it alongside files like `package.json` and `vite.config.ts`. All of the commands you need to install dependencies, build the app, and open a preview server are documented below.
