@@ -1,20 +1,26 @@
 import { ArrowRight, HeartHandshake, Sparkles, Target } from 'lucide-react';
 
-const teamMembers = [
+type TeamMember = {
+  name: string;
+  role: string;
+  bio: string;
+};
+
+const teamMembers: TeamMember[] = [
   {
     name: 'Daniela Medina',
     role: 'Co-Fundadora & Coach Ejecutiva',
-    bio: 'Especialista en liderazgo consciente y desarrollo de equipos de alto rendimiento con más de 12 años de experiencia en transformación organizacional.'
+    bio: 'Especialista en liderazgo consciente y desarrollo de equipos de alto rendimiento con más de 12 años de experiencia en transformación organizacional.',
   },
   {
     name: 'Gustavo Mujica',
     role: 'Director de Estrategia de Carrera',
-    bio: 'Diseña rutas de aprendizaje y planes de carrera que conectan talento latinoamericano con oportunidades globales en tecnología y negocios.'
+    bio: 'Diseña rutas de aprendizaje y planes de carrera que conectan talento latinoamericano con oportunidades globales en tecnología y negocios.',
   },
   {
     name: 'Ricardo Pulgar',
     role: 'Mentor de Innovación y Talento',
-    bio: 'Facilitador de metodologías ágiles, mentor de emprendedores y apasionado por crear culturas que impulsan la experimentación continua.'
+    bio: 'Facilitador de metodologías ágiles, mentor de emprendedores y apasionado por crear culturas que impulsan la experimentación continua.',
   }
 ];
 
