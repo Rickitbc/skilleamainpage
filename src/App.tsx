@@ -8,6 +8,7 @@ import {
   GraduationCap,
   Compass,
 } from "lucide-react";
+import RicardoPixel from "./assets/team/ricardo-pixel.svg";
 
 /* ==================== Utilidades SPA (URLs limpias) ==================== */
 const BASE = import.meta.env.BASE_URL || "/"; // p.ej. '/skilleamainpage/'
@@ -107,23 +108,70 @@ type TeamMember = {
   name: string;
   role: string;
   focus: string;
+  highlights: string[];
+  badge: string;
+  accent: {
+    border: string;
+    glow: string;
+    badge: string;
+    chip: string;
+  };
+  monogram?: string;
+  avatarGradient?: string;
+  image?: string;
+  imageFit?: "cover" | "contain";
+  imageBackground?: string;
 };
 
-const aboutTeam: TeamMember[] = [
+const teamMembers: TeamMember[] = [
   {
     name: "Daniela Medina",
     role: "Coach de Transformación",
-    focus: "Acompaña procesos de cambio cultural y liderazgo femenino.",
+    focus:
+      "Facilita procesos de cambio cultural con enfoque en liderazgo femenino y equipos conscientes.",
+    highlights: ["Cambio cultural", "Coaching ejecutivo", "Liderazgo femenino"],
+    badge: "Transformación & Cultura",
+    accent: {
+      border: "border-[var(--skillea-soft-pink)]/40",
+      glow: "bg-[var(--skillea-soft-pink)]/40",
+      badge: "bg-[var(--skillea-soft-pink)]/20 text-[var(--skillea-soft-pink)]",
+      chip: "bg-[var(--skillea-soft-pink)]/15 text-[var(--skillea-soft-pink)]",
+    },
+    monogram: "DM",
+    avatarGradient: "bg-gradient-to-br from-[var(--skillea-soft-pink)] to-[var(--skillea-light-blue)]",
   },
   {
     name: "Gustavo Mujica",
     role: "Mentor de Carrera",
-    focus: "Especialista en planes de transición hacia roles directivos.",
+    focus:
+      "Diseña planes de crecimiento profesional hacia posiciones directivas con métricas claras.",
+    highlights: ["Mentoría directiva", "Planes de carrera", "Estrategia competitiva"],
+    badge: "Mentoría & Estrategia",
+    accent: {
+      border: "border-[var(--skillea-ice)]",
+      glow: "bg-[var(--skillea-light-blue)]/40",
+      badge: "bg-[var(--skillea-light-blue)]/20 text-[var(--skillea-navy)]",
+      chip: "bg-[var(--skillea-light-blue)]/25 text-[var(--skillea-navy)]",
+    },
+    monogram: "GM",
+    avatarGradient: "bg-gradient-to-br from-[var(--skillea-star-yellow)] to-[var(--skillea-ice)]",
   },
   {
     name: "Ricardo Pulgar",
     role: "Consultor en Innovación",
-    focus: "Integra metodologías ágiles para equipos orientados a resultados.",
+    focus:
+      "Integra metodologías ágiles y diseño de producto para acelerar lanzamientos y aprendizajes.",
+    highlights: ["Innovación ágil", "Diseño de productos", "Experiencias digitales"],
+    badge: "Innovación & Producto",
+    accent: {
+      border: "border-[#0b3a6b]/40",
+      glow: "bg-[#0b3a6b]/30",
+      badge: "bg-[#0b3a6b]/20 text-[#0b3a6b]",
+      chip: "bg-[#0b3a6b]/15 text-[#0b3a6b]",
+    },
+    image: RicardoPixel,
+    imageFit: "contain",
+    imageBackground: "bg-[#0b3a6b]",
   },
 ];
 
@@ -279,32 +327,60 @@ function App() {
             </div>
           </div>
           <div className="relative">
-            <div className="absolute -top-10 -right-14 h-48 w-48 rounded-full bg-[var(--skillea-soft-blue)]/40 blur-3xl" aria-hidden="true" />
-            <div className="relative overflow-hidden rounded-[28px] bg-white shadow-[0_35px_60px_-40px_rgba(16,45,107,0.35)] border border-[var(--skillea-soft-blue)]/30">
-              <div className="px-10 py-12 space-y-6">
-                <div>
-                  <h3 className="text-2xl font-bold text-[var(--skillea-navy)]">Nuestro equipo</h3>
-                  <p className="mt-3 text-sm text-[var(--skillea-navy)]/70 leading-relaxed">
-                    Facilitadores certificados en coaching ejecutivo, desarrollo de habilidades digitales y diseño de carrera acompañan
-                    cada proceso con cercanía y métricas claras.
-                  </p>
-                </div>
-                <div className="grid gap-4">
-                  {aboutTeam.map((member) => (
-                    <div key={member.name} className="flex gap-4 items-start">
-                      <div className="flex h-12 w-12 items-center justify-center rounded-full bg-gradient-to-br from-[var(--skillea-soft-pink)] to-[var(--skillea-light-blue)] text-[var(--skillea-navy)] font-semibold">
-                        {member.name.charAt(0)}
+            <div className="absolute -top-14 -right-24 h-56 w-56 rounded-full bg-[var(--skillea-light-blue)]/50 blur-3xl" aria-hidden="true" />
+            <div className="relative grid gap-6 sm:grid-cols-2">
+              {teamMembers.map((member) => (
+                <article
+                  key={member.name}
+                  className={`relative overflow-hidden rounded-3xl border ${member.accent.border} bg-white/90 p-6 shadow-[0_30px_60px_-40px_rgba(16,45,107,0.4)] backdrop-blur-sm`}
+                >
+                  <div
+                    className={`pointer-events-none absolute -top-16 -right-16 h-40 w-40 rounded-full blur-3xl ${member.accent.glow}`}
+                    aria-hidden="true"
+                  />
+                  <div className="relative space-y-5">
+                    <span
+                      className={`inline-flex items-center rounded-full px-3 py-1 text-xs font-semibold tracking-wide ${member.accent.badge}`}
+                    >
+                      {member.badge}
+                    </span>
+                    <div className="flex items-center gap-4">
+                      <div
+                        className={`flex h-16 w-16 shrink-0 items-center justify-center rounded-2xl shadow-inner ${
+                          member.image ? `${member.imageBackground} p-1` : member.avatarGradient
+                        }`}
+                      >
+                        {member.image ? (
+                          <img
+                            src={member.image}
+                            alt={member.name}
+                            className={`h-14 w-14 rounded-xl ${
+                              member.imageFit === "contain" ? "object-contain" : "object-cover"
+                            }`}
+                          />
+                        ) : (
+                          <span className="text-lg font-semibold text-white">{member.monogram}</span>
+                        )}
                       </div>
                       <div>
-                        <p className="font-semibold text-[var(--skillea-navy)]">{member.name}</p>
+                        <h3 className="text-xl font-semibold text-[var(--skillea-navy)]">{member.name}</h3>
                         <p className="text-sm text-[var(--skillea-navy)]/70">{member.role}</p>
-                        <p className="mt-1 text-sm text-[var(--skillea-navy)]/60 leading-relaxed">{member.focus}</p>
                       </div>
                     </div>
-                  ))}
-                </div>
-
-              </div>
+                    <p className="text-sm text-[var(--skillea-navy)]/70 leading-relaxed">{member.focus}</p>
+                    <div className="flex flex-wrap gap-2 pt-1">
+                      {member.highlights.map((highlight) => (
+                        <span
+                          key={highlight}
+                          className={`inline-flex items-center rounded-full px-3 py-1 text-xs font-semibold ${member.accent.chip}`}
+                        >
+                          {highlight}
+                        </span>
+                      ))}
+                    </div>
+                  </div>
+                </article>
+              ))}
             </div>
           </div>
         </div>
