@@ -103,6 +103,27 @@ const testimonials = [
   { name: "Ana P.", role: "UX Designer", text: "Conseguí estructura, feedback y seguridad para mis entrevistas." },
 ];
 
+const aboutTeam = [
+  {
+    name: "Daniela Medina",
+    role: "Coach de Transformación",
+    focus: "Acompaña procesos de cambio cultural y liderazgo femenino.",
+    image: `${BASE}team/daniela-medina.svg`,
+  },
+  {
+    name: "Ricardo Pulgar",
+    role: "Consultor en Innovación",
+    focus: "Integra metodologías ágiles para equipos orientados a resultados.",
+    image: `${BASE}team/ricardo-pulgar.svg`,
+  },
+  {
+    name: "Gustavo Mujica",
+    role: "Mentor de Carrera",
+    focus: "Especialista en planes de transición hacia roles directivos.",
+    image: `${BASE}team/gustavo-mujica.svg`,
+  },
+];
+
 function App() {
   useEffect(() => {
     // Compat: si llega con #hash lo traducimos a ruta limpia
