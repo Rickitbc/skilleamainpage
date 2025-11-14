@@ -1,5 +1,5 @@
 // src/App.tsx
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import {
   ArrowRight,
   Star,
@@ -11,6 +11,10 @@ import {
 
 /* ==================== Utilidades SPA (URLs limpias) ==================== */
 const BASE = import.meta.env.BASE_URL || "/"; // p.ej. '/skilleamainpage/'
+const withBase = (path: string) => {
+  const normalized = path.startsWith("/") ? path.slice(1) : path;
+  return `${BASE}${normalized}`;
+};
 const SECTION_IDS = ["", "nosotros", "servicios", "metodologia", "testimonios", "cta"] as const;
 type SectionId = (typeof SECTION_IDS)[number];
 
@@ -171,8 +175,36 @@ const teamMembers: TeamMember[] = [
     },
     monogram: "RP",
     avatarGradient: "bg-gradient-to-br from-[#0b3a6b] via-[var(--skillea-navy)] to-[var(--skillea-light-blue)]",
+    // Para volver a mostrar la foto original, coloca el archivo en public/team/ricardo-pulgar.png
+    image: withBase("team/ricardo-pulgar.png"),
+    imageFit: "contain",
+    imageBackground: "bg-white",
+    imageWrapperClass: "p-1",
   },
 ];
+
+const TeamAvatar: React.FC<{ member: TeamMember }> = ({ member }) => {
+  const [hasError, setHasError] = useState(false);
+  const showImage = Boolean(member.image && !hasError);
+  const wrapperClasses = showImage
+    ? `h-20 w-20 ${member.imageBackground ?? "bg-white"} ${member.imageWrapperClass ?? "p-2"}`
+    : `h-16 w-16 ${member.avatarGradient}`;
+
+  return (
+    <div className={`flex shrink-0 items-center justify-center rounded-2xl shadow-inner ${wrapperClasses}`}>
+      {showImage ? (
+        <img
+          src={member.image}
+          alt={member.name}
+          className={`h-full w-full rounded-xl ${member.imageFit === "contain" ? "object-contain" : "object-cover"}`}
+          onError={() => setHasError(true)}
+        />
+      ) : (
+        <span className="text-lg font-semibold text-white">{member.monogram}</span>
+      )}
+    </div>
+  );
+};
 
 function App() {
   useEffect(() => {
@@ -344,27 +376,7 @@ function App() {
                       {member.badge}
                     </span>
                     <div className="flex items-center gap-4">
-                      <div
-                        className={`flex shrink-0 items-center justify-center rounded-2xl shadow-inner ${
-                          member.image
-                            ? `h-20 w-20 ${member.imageBackground ?? "bg-white"} ${
-                                member.imageWrapperClass ?? "p-2"
-                              }`
-                            : `h-16 w-16 ${member.avatarGradient}`
-                        }`}
-                      >
-                        {member.image ? (
-                          <img
-                            src={member.image}
-                            alt={member.name}
-                            className={`h-full w-full rounded-xl ${
-                              member.imageFit === "contain" ? "object-contain" : "object-cover"
-                            }`}
-                          />
-                        ) : (
-                          <span className="text-lg font-semibold text-white">{member.monogram}</span>
-                        )}
-                      </div>
+                      <TeamAvatar member={member} />
                       <div>
                         <h3 className="text-xl font-semibold text-[var(--skillea-navy)]">{member.name}</h3>
                         <p className="text-sm text-[var(--skillea-navy)]/70">{member.role}</p>
