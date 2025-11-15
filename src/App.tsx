@@ -145,9 +145,9 @@ function App() {
       <nav className="fixed inset-x-0 top-0 z-50 bg-white/80 backdrop-blur border-b border-[var(--skillea-ice)]">
         <div className="max-w-7xl mx-auto px-6">
           <div className="flex h-16 items-center justify-between">
-            <LinkToSection section="" className="inline-flex items-center gap-3">
+            <LinkToSection section="" className="inline-flex items-center gap-3" aria-label="Ir al inicio">
               <img src={logoSrc} alt="Skillea" className="h-8 w-auto" />
-              <span className="font-semibold hidden sm:inline">Skillea</span>
+              <span className="sr-only">Skillea</span>
             </LinkToSection>
             <div className="hidden md:flex items-center gap-8">
               <LinkToSection section="nosotros" className="text-[var(--skillea-navy)]/70 hover:text-[var(--skillea-navy)] transition-colors">Nosotros</LinkToSection>
