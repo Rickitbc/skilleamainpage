@@ -127,21 +127,36 @@ const testimonials = [
   { name: "Ana P.", role: "UX Designer", text: "Conseguí estructura, feedback y seguridad para mis entrevistas." },
 ];
 
-const teamMembers = [
+type TeamMember = {
+  name: string;
+  role: string;
+  focus: string;
+  photo: string;
+  accent: string;
+  linkedinUrl?: string;
+};
+
+const teamMembers: TeamMember[] = [
   {
     name: "Daniela Medina",
     role: "Coach de Transformación",
     focus: "Acompaña procesos de cambio cultural y liderazgo femenino.",
+    photo: "team/daniela-medina.svg",
+    accent: "from-[var(--skillea-soft-pink)] to-[var(--skillea-light-blue)]",
   },
   {
     name: "Gustavo Mujica",
     role: "Mentor de Carrera",
     focus: "Especialista en planes de transición hacia roles directivos.",
+    photo: "team/gustavo-mujica.svg",
+    accent: "from-[var(--skillea-star-yellow)] to-[var(--skillea-soft-peach)]",
   },
   {
     name: "Ricardo Pulgar",
     role: "Consultor en Innovación",
     focus: "Integra metodologías ágiles para equipos orientados a resultados.",
+    photo: "team/ricardo-pulgar.svg",
+    accent: "from-[var(--skillea-light-blue)] to-[var(--skillea-soft-blue)]",
     linkedinUrl: "https://www.linkedin.com/in/rickpm/",
   },
 ];
@@ -313,10 +328,19 @@ function App() {
                     {teamMembers.map((member) => {
                       const hasLinkedin = Boolean(member.linkedinUrl);
                       const WrapperTag = (hasLinkedin ? "a" : "span") as const;
+                      const photoSrc = `${BASE}${member.photo}`;
                       return (
-                        <div key={member.name} className="flex gap-4 items-start">
-                          <div className="flex h-12 w-12 items-center justify-center rounded-full bg-gradient-to-br from-[var(--skillea-soft-pink)] to-[var(--skillea-light-blue)] text-[var(--skillea-navy)] font-semibold">
-                            {member.name.charAt(0)}
+                        <div
+                          key={member.name}
+                          className="flex gap-4 items-center rounded-2xl border border-[var(--skillea-ice)] bg-[var(--skillea-cloud)]/60 p-4"
+                        >
+                          <div
+                            className={`relative h-20 w-20 rounded-[28px] bg-gradient-to-br ${member.accent} p-1.5 shadow-[0_15px_30px_-20px_rgba(16,45,107,0.7)]`}
+                            aria-hidden="true"
+                          >
+                            <div className="h-full w-full rounded-[22px] bg-white flex items-center justify-center overflow-hidden">
+                              <img src={photoSrc} alt={member.name} className="h-full w-full object-contain p-2" />
+                            </div>
                           </div>
                           <div className="flex-1">
                             <p className="font-semibold text-[var(--skillea-navy)]">{member.name}</p>
