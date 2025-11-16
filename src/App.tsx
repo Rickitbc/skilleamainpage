@@ -146,7 +146,7 @@ function App() {
         <div className="max-w-7xl mx-auto px-6">
           <div className="flex h-16 items-center justify-between">
             <LinkToSection section="" className="inline-flex items-center gap-3" aria-label="Ir al inicio">
-              <img src={logoSrc} alt="Skillea" className="h-8 w-auto" />
+              <img src={logoSrc} alt="Skillea" className="h-14 w-auto" />
               <span className="sr-only">Skillea</span>
             </LinkToSection>
             <div className="hidden md:flex items-center gap-8">
