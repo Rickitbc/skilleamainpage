@@ -143,24 +143,21 @@ const teamMembers: TeamMember[] = [
     name: "Daniela Medina",
     role: "Coach de Transformación",
     focus: "Acompaña procesos de cambio cultural y liderazgo femenino.",
-    // 👇 Nueva imagen en /public
-    photo: "Danipixel.png",
+    photo: teamPortrait,
     accent: "from-[var(--skillea-soft-pink)] to-[var(--skillea-light-blue)]",
   },
   {
     name: "Gustavo Mujica",
     role: "Mentor de Carrera",
     focus: "Especialista en planes de transición hacia roles directivos.",
-    // 👇 Nueva imagen en /public
-    photo: "Guspixel.png",
+    photo: teamPortrait,
     accent: "from-[var(--skillea-star-yellow)] to-[var(--skillea-soft-peach)]",
   },
   {
     name: "Ricardo Pulgar",
     role: "Consultor en Innovación",
     focus: "Integra metodologías ágiles para equipos orientados a resultados.",
-    // 👇 Tu imagen en /public
-    photo: "Rickpixel.png",
+    photo: teamPortrait,
     accent: "from-[var(--skillea-light-blue)] to-[var(--skillea-soft-blue)]",
     linkedinUrl: "https://www.linkedin.com/in/rickpm/",
   },
@@ -328,23 +325,24 @@ function App() {
                     cada proceso con cercanía y métricas claras.
                   </p>
                 </div>
-                {/* Nuestro equipo */}
-                <div className="grid gap-4">
-                  {teamMembers.map((member) => {
-                    const hasLinkedin = Boolean(member.linkedinUrl);
-                    const WrapperTag = (hasLinkedin ? "a" : "span") as const;
-                    const photoSrc = `${BASE}${member.photo}`;
-                    return (
-                      <div
-                        key={member.name}
-                        className="flex gap-4 items-center rounded-2xl border border-[var(--skillea-ice)] bg-[var(--skillea-cloud)]/60 p-4"
-                      >
+                  {/* Nuestro equipo */}
+                  <div className="grid gap-4">
+                    {teamMembers.map((member) => {
+                      const hasLinkedin = Boolean(member.linkedinUrl);
+                      const WrapperTag = (hasLinkedin ? "a" : "span") as const;
+                      const photoSrc = `${BASE}${member.photo}`;
+                      return (
                         <div
-                          className={`relative h-20 w-20 rounded-[28px] bg-gradient-to-br ${member.accent} p-1.5 shadow-[0_15px_30px_-20px_rgba(16,45,107,0.7)]`}
-                          aria-hidden="true"
+                          key={member.name}
+                          className="flex gap-4 items-center rounded-2xl border border-[var(--skillea-ice)] bg-[var(--skillea-cloud)]/60 p-4"
                         >
-                          <div className="h-full w-full rounded-[22px] bg-white flex items-center justify-center overflow-hidden">
-                            <img src={photoSrc} alt={member.name} className="h-full w-full object-contain p-2" />
+                          <div
+                            className={`relative h-20 w-20 rounded-[28px] bg-gradient-to-br ${member.accent} p-1.5 shadow-[0_15px_30px_-20px_rgba(16,45,107,0.7)]`}
+                            aria-hidden="true"
+                          >
+                            <div className="h-full w-full rounded-[22px] bg-white flex items-center justify-center overflow-hidden">
+                              <img src={photoSrc} alt={member.name} className="h-full w-full object-contain p-2" />
+                            </div>
                           </div>
                         </div>
                         <div className="flex-1">
@@ -412,7 +410,7 @@ function App() {
                     </li>
                   ))}
                 </ul>
-                <div className="relative rounded-2xl bg-[var(--skillea-cloud)]/70 px-4 py-3 text-sm text-[var(--skillea-navy)]/80 opacity-0 translate-y-2 transition-all.duration-300 group-hover:opacity-100 group-hover:translate-y-0">
+                <div className="relative rounded-2xl bg-[var(--skillea-cloud)]/70 px-4 py-3 text-sm text-[var(--skillea-navy)]/80 opacity-0 translate-y-2 transition-all duration-300 group-hover:opacity-100 group-hover:translate-y-0">
                   {service.hoverDetails}
                 </div>
                 <div className="absolute bottom-0 left-0 right-0 h-1 bg-gradient-to-r from-transparent via-[var(--skillea-soft-pink)]/40 to-transparent" />
@@ -523,8 +521,7 @@ function App() {
               <h4 className="font-semibold text-lg.mb-4">Empresa</h4>
               <ul className="space-y-2 text-sm text-[var(--skillea-ice)]/80">
                 <li><LinkToSection section="nosotros" className="hover:text-white transition-colors">Nosotros</LinkToSection></li>
-                <li><LinkToSection section="testimonios" className="hover:text-white.transition-colors">Equipo</LinkToSection></li>
-                <li><a href="#" className="hover:text-white.transition-colors">Blog</a></li>
+                <li><LinkToSection section="servicios" className="hover:text-white transition-colors">Servicios</LinkToSection></li>
               </ul>
             </div>
             <div>
